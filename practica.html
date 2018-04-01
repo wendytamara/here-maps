@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Arapey|Lobster|Muli:400,700" rel="stylesheet">
+  <script src="http://js.api.here.com/v3/3.0/mapsjs-core.js" type="text/javascript" charset="utf-8"></script>
+  <script src="http://js.api.here.com/v3/3.0/mapsjs-service.js" type="text/javascript" charset="utf-8"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>    
+</head>
+<body>
+
+    <nav class='white'>
+        <div class="">
+          <a href="#!" className="brand-logo color-gris"> <img  src="tra.jpg" alt=""/> </a>
+         
+          
+    
+          <ul class="right hide-on-med-and-down">
+
+            <li><a class="color-gris bolt" href="sass.html"><i class="material-icons left color-gris">directions_bike</i>rutas del mundo Inicio</a></li>
+            <li><a class="color-gris bolt"  href="sass.html"><i class="material-icons left">add</i>subir rutas Lugares</a></li>
+            <li><a class="color-gris bolt"  href="sass.html"><i class="material-icons left">person</i>Iniciar sesion Subir Ruta</a></li>
+            <li><a href="badges.html"><i class="material-icons right">view_module</i>Link with Right Icon</a></li> 
+          </ul>
+        </div>
+    
+      </nav>
+
+      <Row style={{paddingLeft: '30%', margin: '0px !important'}} >
+          <Input className="color-gris" s={5} label="buscar" validate><Icon>search</Icon></Input>    
+      </Row>
+
+      <div>
+          <Slider>
+          
+          <Slide
+            src={Portada}
+            title="TRAVELIN!">
+             Es un sitio para descubrir y compartir rutas a los mejores destinos del PERU.
+          </Slide>
+          <Slide
+          src={DesiertoHuacachina}
+            title="Desierto de la Huacachina"
+            placement="left">
+            No sabes como llegar?, aqui te decimos como! Ingresa y encontraras las mejores rutas
+          </Slide>
+          <Slide
+             src={Paracas}
+            title="Dunas de Paracas"
+            placement="right">
+            Ya somos 3.437.829 miembros explorando y compartiendo 7.990.581 rutas y 13.275.827 fotos al aire libre.
+            Participa!
+          </Slide>
+    
+          <Slide
+             src={Huaraz}
+            title="Glaciar Pastoruri"
+            placement="right">
+            Crea tus propias rutas GPS con tu smartphone y súbelas directamente y de la forma más sencilla a Wikiloc.
+          </Slide>
+          <Slide
+             src={LagunaHuacachina}
+            title="Right aligned Caption"
+            placement="right">
+            Here's our small slogan.
+          </Slide>
+        </Slider>
+       
+        </div>
+
+
+
+
+      <script src="http://js.api.here.com/v3/3.0/mapsjs-core.js" type="text/javascript" charset="utf-8"></script>
+      <script src="http://js.api.here.com/v3/3.0/mapsjs-service.js" type="text/javascript" charset="utf-8"></script>
+      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>    
+</body>
+</html>

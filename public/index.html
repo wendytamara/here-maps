@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">    </head>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="css/main.css">
+  <title>HereMaps</title>
+</head>
+<body>
+
+  <!-- menu-hamburguesa -->
+  <nav class='white header'>
+      <div class="">
+        <a href="#!" class="brand-logo color-gris logo"> <img  src="assets/images/tra.jpg" alt=""/> </a>
+        <!-- ancor despliega el navbar lateral version movil -->
+        <a href="#" data-target="slide-out" class="sidenav-trigger color-letter hide-on-large-only" ><i class="material-icons icon-navbar bolt">menu</i></a>
+        <ul class="right hide-on-med-and-down container-li">
+          <li><a class="color-letter bolt" href="sass.html"><i class="material-icons left color-gris">directions_bike</i>rutas del mundo Inicio</a></li>
+          <li><a class="color-letter bolt"  href="sass.html"><i class="material-icons left">add</i>subir rutas Lugares</a></li>
+          <li><a class="color-letter bolt"  href="sass.html"><i class="material-icons left">person</i>Iniciar sesion Subir Ruta</a></li>    
+        </ul>
+      </div>
+    </nav>
+   <!-- navbar version movil -->
+    <ul id="slide-out" class="sidenav">
+      <li><a href="#!">First Sidebar Link</a></li>
+      <li><a href="#!">Second Sidebar Link</a></li>
+    </ul>
+   
+
+
+
+<!-- contenedor del mapa -->
+  <div class="right" style="width: 70%; height: 100vh" id="mapContainer"></div> 
+
+
+
+  <script src="http://js.api.here.com/v3/3.0/mapsjs-core.js" type="text/javascript" charset="utf-8"></script>
+  <script src="http://js.api.here.com/v3/3.0/mapsjs-service.js" type="text/javascript" charset="utf-8"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>    
+  <script src="js/styles.js"> </script>
+  <script src="js/app.js"></script>
+</body>
+</html>

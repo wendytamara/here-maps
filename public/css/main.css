@@ -1,0 +1,27 @@
+.color-letter {
+  color: #59241a;
+}
+
+.bolt {
+  font-weight: 700;
+}
+.logo {
+  width: 130px;
+}
+
+.header {
+  height: 120px;
+  padding: 0px 30px;
+}
+
+.container-li {
+  padding-top: 25px;
+}
+
+.icon-navbar {
+  padding-top: 25px;
+  font-size: 35px !important;
+}
+
+
+
