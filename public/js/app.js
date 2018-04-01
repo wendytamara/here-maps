@@ -12,6 +12,21 @@ var platform = new H.service.Platform({
   document.getElementById('mapContainer'),
   maptypes.normal.map,
   {
-  zoom: 10,
+  zoom: 11,
   center: { lat: -12.0463731, lng: -77.042754 }
   });
+
+  var x = document.getElementById("demo");
+  
+  function getLocation() {
+      if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(showPosition);
+      } else { 
+          x.innerHTML = "Geolocation is not supported by this browser.";
+      }
+  }
+  
+  function showPosition(position) {
+      x.innerHTML = "Latitude: " + position.coords.latitude + 
+      "<br>Longitude: " + position.coords.longitude;
+  }
