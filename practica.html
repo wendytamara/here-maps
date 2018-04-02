@@ -8,6 +8,7 @@
 
   <script src="http://js.api.here.com/v3/3.0/mapsjs-core.js" 
   type="text/javascript" charset="utf-8"></script>
+  <script type="text/javascript" src="https://js.cit.api.here.com/v3/3.0/mapsjs-mapevents.js"></script>
   <script src="http://js.api.here.com/v3/3.0/mapsjs-service.js" 
   type="text/javascript" charset="utf-8"></script>
   <script src="http://js.api.here.com/v3/3.0/mapsjs-ui.js" 
@@ -22,23 +23,41 @@
 </head>
 
 <body>
+  <div id="templateCard"></div>
     <div id="map" style="width: 640px; height: 480px"/>
+
+<form action="">
+    <input id="camp-text" type="text" placeholder="ingrese a buscar ">
+    <button btnSearch>BUSCAR</button>
+</form>
+
     <script type="text/javascript" charset="utf-8">
     // Instantiate the Platform class with authentication and
     // authorization credentials:
+
+    var campText = document.getElementById('camp-text');
+
+    function moveMapToBerlin(map){
+      map.setCenter({lat:-12.0463731, lng:-77.042754});
+      map.setZoom(14);
+    }
+
     var platform = new H.service.Platform({
-    useCIT: true,
-    app_id: 'dtSI2axPe5QEr4QN4Bmd',
-    app_code: 'cciCXXxEAcSyxCtSkOFyZg'
+      app_id: 'dtSI2axPe5QEr4QN4Bmd',
+      app_code: 'cciCXXxEAcSyxCtSkOFyZg',
+      useCIT: true,
+      useHTTPS: true
     });
+
+    var defaultLayers = platform.createDefaultLayers();
     
    // Crear una instancia de un mapa dentro del elemento DOM con id map. los
 // map center está en San Francisco, el nivel de zoom es 10:
-    var map = new H.Map(document.getElementById('map'),
-    platform.createDefaultLayers().normal.map, {
-    center: {lat: -12.0463731, lng: -77.042754},
-    zoom: 15
-    });
+var map = new H.Map(document.getElementById('map'),
+defaultLayers.normal.map);
+
+var behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(map));
+
     
    // Crea un objeto de grupo para contener marcadores de mapa:
     var group = new H.map.Group();
@@ -59,7 +78,7 @@
     var params = {
   // Búsqueda de texto simple para lugares con la palabra "hotel"
      // asociado a ellos:
-    'q': 'banco',
+    'q': 'restaurantes',
    // Buscar en el distrito de Chinatown en San Francisco:
     'at': '-12.0463731,-77.042754'
     };
@@ -68,6 +87,8 @@
 
     function onResult(data) {
     addPlacesToMap(data.results);
+    showTemplate(data.results);
+    console.log(data.results);
     }
     
     // Define a callback function to handle errors:
@@ -75,21 +96,73 @@
     error = data;
     }
     
+    var ui = H.ui.UI.createDefault(map, defaultLayers);
+    
+    // Now use the map as required...
+    moveMapToBerlin(map);
+
   // Esta función agrega marcadores al mapa, indicando cada uno de
        // los lugares ubicados
 
     function addPlacesToMap(result) {
+      // console.log(result)
+      // console.log(result.items)
+    
     group.addObjects(result.items.map(function (place) {
     var marker = new H.map.Marker({lat: place.position[0],
     lng: place.position[1]})
     return marker;
+
     }));
     }
     
     // Run a search request with parameters, headers (empty), and
     // callback functions:
     search.request(params, {}, onResult, onError);
+
+    var templateCard = document.getElementById('templateCard');
+
+    function showTemplate(result){
+      console.log(result);
+      var resultado = result.items;
+
+      
+      var placesItems = resultado.map(function (places, index) {
+        debugger
+        
+
+           console.log(places.title)
+
+           var template = ` <div class="row">
+          <div class="col s12 m6">
+            <div class="card blue-grey darken-1">
+              <div class="card-content white-text">
+                <span class="card-title">${places.title}</span>
+                <p>${places.vicinity}</p>
+              </div>
+              <div class="card-action">
+                <a href="#">This is a link</a>
+                <a href="#">This is a link</a>
+              </div>
+            </div>
+          </div>
+        </div>`;
+  
+        templateCard.append(template);
+        
+       });
+
+
+      
+    }
+
+
+
+    
     
     </script>
+
+      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+
     </body>
 </html>
