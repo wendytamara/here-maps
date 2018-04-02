@@ -20,7 +20,14 @@
     ajaxRequest = new XMLHttpRequest(),
     query = '';
 
-    function autoCompleteListener(textBox, event) {
+/**
+ * If the text in the text box  has changed, and is not empty,
+ * send a geocoding auto-completion request to the server.
+ *
+ * @param {Object} textBox the textBox DOM object linked to this event
+ * @param {Object} event the DOM event which fired this listener
+ */
+function autoCompleteListener(textBox, event) {
 
   if (query != textBox.value){
     if (textBox.value.length >= 1){
@@ -34,7 +41,7 @@
         'query=' +  encodeURIComponent(textBox.value) +   // The search text which is the basis of the query
         '&beginHighlight=' + encodeURIComponent('<mark>') + //  Mark the beginning of the match in a token. 
         '&endHighlight=' + encodeURIComponent('</mark>') + //  Mark the end of the match in a token. 
-        '&maxresults=5' +  // The upper limit the for number of suggestions to be included 
+        '&maxresults=1' +  // The upper limit the for number of suggestions to be included 
                           // in the response.  Default is set to 5.
         '&app_id=' + APPLICATION_ID +
         '&app_code=' + APPLICATION_CODE;
@@ -45,6 +52,10 @@
   query = textBox.value;
 }
 
+
+/**
+ *  This is the event listener which processes the XMLHttpRequest response returned from the server.
+ */
 function onAutoCompleteSuccess() {
  /*
   * The styling of the suggestions response on the map is entirely under the developer's control.
@@ -56,7 +67,10 @@ function onAutoCompleteSuccess() {
   addSuggestionsToMap(this.response);
 }
 
-function onAutoCompleteFailed() {
+/**
+ * This function will be called if a communication error occurs during the XMLHttpRequest
+ */
+ function onAutoCompleteFailed() {
   alert('Ooops!');
 }
 
@@ -72,17 +86,16 @@ ajaxRequest.responseType = "json";
 
 
 // set up containers for the map  + panel
-
 var mapContainer = document.getElementById('map'),
   suggestionsContainer = document.getElementById('panel');
 
 //Step 1: initialize communication with the platform
-var APPLICATION_ID = 'DemoAppId01082013GAL',
-  APPLICATION_CODE = 'AJKnXv84fjrb0KIHawS0Tg';
+var APPLICATION_ID = 'dtSI2axPe5QEr4QN4Bmd',
+  APPLICATION_CODE = 'cciCXXxEAcSyxCtSkOFyZg';
 
 var platform = new H.service.Platform({
-  app_id: 'dtSI2axPe5QEr4QN4Bmd',
-  app_code: 'cciCXXxEAcSyxCtSkOFyZg',
+  app_id: APPLICATION_ID,
+  app_code: APPLICATION_CODE,
   useCIT: true,
   useHTTPS: true
 });
@@ -117,7 +130,12 @@ var ui = H.ui.UI.createDefault(map, defaultLayers);
 // Hold a reference to any infobubble opened
 var bubble;
 
-function openBubble(position, text){
+/**
+ * Function to Open/Close an infobubble on the map.
+ * @param  {H.geo.Point} position     The location on the map.
+ * @param  {String} text              The contents of the infobubble.
+ */
+ function openBubble(position, text){
  if(!bubble){
     bubble =  new H.ui.InfoBubble(
       position,
@@ -131,6 +149,22 @@ function openBubble(position, text){
   }
 }
 
+
+/**
+ * The Geocoder Autocomplete API response retrieves a complete addresses and a `locationId`.
+ * for each suggestion.
+ *
+ * You can subsequently use the Geocoder API to geocode the address based on the ID and 
+ * thus obtain the geographic coordinates of the address.
+ *
+ * For demonstration purposes only, this function makes a geocoding request
+ * for every `locationId` found in the array of suggestions and displays it on the map.
+ * 
+ * A more typical use-case would only make a single geocoding request - for example
+ * when the user has selected a single suggestion from a list.
+ *
+ * @param {Object} response
+ */
 function addSuggestionsToMap(response){
   /**
    * This function will be called once the Geocoder REST API provides a response
@@ -140,9 +174,8 @@ function addSuggestionsToMap(response){
     var marker,
       locations = result.Response.View[0].Result,
       i;
-
-      // Add a marker for each location found
-      for (i = 0; i < locations.length; i++) {
+  // Add a marker for each location found
+  for (i = 0; i < locations.length; i++) {
         marker = new H.map.Marker({
           lat : locations[i].Location.DisplayPosition.Latitude,
           lng : locations[i].Location.DisplayPosition.Longitude
@@ -156,8 +189,10 @@ function addSuggestionsToMap(response){
         map.setZoom(15);
       }
     },
-
-
+    /**
+     * This function will be called if a communication error occurs during the JSON-P request
+     * @param  {Object} error  The error message received.
+     */
     onGeocodeError = function (error) {
       alert('Ooops!');
     },
@@ -182,7 +217,12 @@ function addSuggestionsToMap(response){
       );
     }
 
-    response.suggestions.forEach(function (item, index, array) {
+  /* 
+   * Loop through all the geocoding suggestions and make a request to the geocoder service
+   * to find out more information about them.
+   */
+
+  response.suggestions.forEach(function (item, index, array) {
     geocodeByLocationId(item.locationId);
   });
 }
@@ -198,14 +238,15 @@ function clearOldSuggestions(){
     }
 }
 
+
 /**
  * Format the geocoding autocompletion repsonse object's data for display
  *
  * @param {Object} response
  */
-
  function addSuggestionsToPanel(response){
    var suggestions = document.getElementById('suggestions');
+   console.log(suggestions);
    suggestions.innerHTML = JSON.stringify(response, null, ' ');
 }
 
