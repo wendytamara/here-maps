@@ -7,77 +7,78 @@
   <!-- Compiled and minified CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">    </head>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="https://js.cit.api.here.com/v3/3.0/mapsjs-ui.css" />
   <link rel="stylesheet" href="css/main.css">
   <title>HereMaps</title>
 </head>
 <body>
-
-  <!-- menu-hamburguesa -->
-  <nav class='white header'>
-      <div class="">
-        <a href="#!" class="brand-logo color-gris logo"> <img  src="assets/images/tra.jpg" alt=""/> </a>
-        <!-- ancor despliega el navbar lateral version movil -->
-        <a href="#" data-target="slide-out" class="sidenav-trigger color-letter hide-on-large-only" ><i class="material-icons icon-navbar bolt">menu</i></a>
-        <ul class="right hide-on-med-and-down container-li">
-          <li><a class="color-letter bolt" href="sass.html"><i class="material-icons left color-gris">directions_bike</i>rutas del mundo Inicio</a></li>
-          <li><a class="color-letter bolt"  href="sass.html"><i class="material-icons left">add</i>subir rutas Lugares</a></li>
-          <li><a class="color-letter bolt"  href="sass.html"><i class="material-icons left">person</i>Iniciar sesion Subir Ruta</a></li>    
-        </ul>
+  <nav class='header'>
+    <div class="">
+      <a href="#!" class="brand-logo color-gris logo"> <img  src="assets/images/tra.jpg" alt=""/> </a>
+      <a href="#" data-target="slide-out" class="sidenav-trigger color-letter hide-on-large-only" ><i class="material-icons icon-navbar bolt">menu</i></a>
+      <ul class="right hide-on-med-and-down container-li">
+        <li><a class="color-letter bolt" href="sass.html">Inicio</a></li>
+        <li><a class="color-letter bolt"  href="sass.html">Mapa</a></li>
+        <li><a class="color-letter bolt"  href="sass.html">Iniciar Sesión</a></li>    
+      </ul>
+    </div>
+  </nav>
+  <ul id="slide-out" class="sidenav">
+    <li><a href="#!">First Sidebar Link</a></li>
+    <li><a href="#!">Second Sidebar Link</a></li>
+  </ul>
+  <!-- contenedor del mapa -->
+  <section class="section-map">
+    <div class="row">
+      <div class="col s3 color-nav">  
+        <div class="row"> <br><br>
+          <div class="col s12">
+            <ul class="tabs">
+              <li class="tab col s6"><a href="#test1">Rutas</a></li>
+              <li class="tab col s6"><a class="active" href="#test2">Encuentra</a></li>
+            </ul>
+          </div>
+          <div id="test1" class="col s12">
+            <br><br>
+            <nav class="">
+              <div class="nav-wrapper">
+                <form>
+                  <div class="input-field white"> 
+                    <input id="searchWord" type="search" >
+                    <label class="label-icon " for="search"><i class="material-icons black-text">search</i></label>
+                    <i class="material-icons ">close</i>
+                  </div>
+                </form>
+              </div>
+            </nav>
+          </div>
+          <div id="test2" class="col s12">
+            <br>
+            <div class="row">
+              <div class="col s12">
+                <div class="row">
+                  <div class="input-field col s12">
+                    <i class="material-icons prefix">my_location</i>
+                    <input type="text" id="demo" class="autocomplete" placeholder="Punto de Partida">
+                  </div>
+                  <a class="waves-effect waves-light btn" id="btn">Localizame</a>
+                  <div class="input-field col s12">
+                    <i class="material-icons prefix">near_me</i>
+                    <input type="text" id="autocomplete-input" class="autocomplete" placeholder="Destino">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="template"></div>
+          </div>
+        </div>
       </div>
-    </nav>
-   <!-- navbar version movil -->
-    <ul id="slide-out" class="sidenav">
-      <li><a href="#!">First Sidebar Link</a></li>
-      <li><a href="#!">Second Sidebar Link</a></li>
-    </ul>
-   
-
-<!-- contenedor del mapa -->
-<section class="section-map">
-  <div class="row">
-    <div class="col s3">
-      <button onclick="getLocation()">Try It</button>  
-      <p id="demo"></p>          
-      <nav>
-        <div class="nav-wrapper">
-          <form>
-            <div class="input-field white">
-              <input id="search" type="search" >
-              <label class="label-icon " for="search"><i class="material-icons black-text">search</i></label>
-              <i class="material-icons ">close</i>
-            </div>
-          </form>
-        </div>
-      </nav>
-      <nav>
-        <div class="nav-wrapper">
-          <form>
-            <div class="input-field white">
-              <input id="search" type="search" >
-              <label class="label-icon " for="search"><i class="material-icons black-text">search</i></label>
-              <i class="material-icons ">close</i>
-            </div>
-          </form>
-        </div>
-      </nav>
-      <nav>
-        <div class="nav-wrapper">
-          <form>
-            <div class="input-field white">
-              <input id="search" type="search" >
-              <label class="label-icon " for="search"><i class="material-icons black-text">search</i></label>
-              <i class="material-icons ">close</i>
-            </div>
-          </form>
-        </div>
-      </nav>
+      <div class="col s9 container-maps">
+        <div class="" style="width: 100%; height: 100vh" id="map"></div> 
+      </div>
     </div>
-    <div class="col s9 container-maps">
-      <div class="" style="width: 100%; height: 80vh" id="mapContainer"></div> 
-    </div>
-  </div>
-</section>
- 
+  </section>
+  
 
 
 
@@ -86,9 +87,12 @@
 
 
   <script src="http://js.api.here.com/v3/3.0/mapsjs-core.js" type="text/javascript" charset="utf-8"></script>
-  <script src="http://js.api.here.com/v3/3.0/mapsjs-service.js" type="text/javascript" charset="utf-8"></script>
-  <script type="text/javascript" charset="UTF-8"
-  src="http://js.api.here.com/v3/3.0/mapsjs-places.js"></script>
+  <script src="http://js.api.here.com/v3/3.0/mapsjs-service.js" type="text/javascript" charset="utf-8"></script> 
+  <script type="text/javascript" charset="UTF-8" src="http://js.api.here.com/v3/3.0/mapsjs-places.js"></script>
+  <script type="text/javascript" src="https://js.cit.api.here.com/v3/3.0/mapsjs-ui.js"></script>
+  <script type="text/javascript" src="https://js.cit.api.here.com/v3/3.0/mapsjs-mapevents.js"></script>
+
+
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>    
   <script src="js/styles.js"> </script>
