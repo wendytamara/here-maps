@@ -6,28 +6,24 @@
   window.onload = function getLocation() {
     var latitud = '';
     var longitud = '';
-      if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(showPosition);
-      } else { 
-          x.innerHTML = "Geolocation is not supported by this browser.";
-      }
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+    } else { 
+        x.innerHTML = "Geolocation is not supported by this browser.";
+    }
   
   function showPosition(position) {
-
     latitud = position.coords.latitude.toFixed(4);
     longitud = position.coords.longitude.toFixed(4);
-
     localStorage.lati = latitud;
     localStorage.longi = longitud;
 
     btn.addEventListener('click', function(){
       x.value = latitud + ' ' + longitud
-
       moveMapToBerlin(map)
     })
     
-
-  // Instantiate the Platform class with authentication and
+// Instantiate the Platform class with authentication and
 // authorization credentials:
 
 var campText = document.getElementById('camp-text');
@@ -35,7 +31,6 @@ var campText = document.getElementById('camp-text');
 function moveMapToBerlin(map){
   map.setCenter({lat:latitud, lng:longitud});
   map.setZoom(14);
-
 }
 
 var platform = new H.service.Platform({
@@ -53,7 +48,6 @@ var map = new H.Map(document.getElementById('map'),
 defaultLayers.normal.map);
 
 var behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(map));
-
 
 // Crea un objeto de grupo para contener marcadores de mapa:
 var group = new H.map.Group();
@@ -89,33 +83,19 @@ function capturingValueInput(event) {
 
    localStorage.lati = latitud;
    localStorage.longi = longitud;
-  
-  //  "-12.0565,-76.9611"
-  
-  
-  console.log(params);
-    search.request(params, {}, onResult, onError);
+   search.request(params, {}, onResult, onError);
 }
-
-
-console.log(localStorage.lati)
-console.log(localStorage.longi)
-
-// capturingValueInput();
-
-// Define search parameters:
-
 
 // Define una función de devolución de llamada para manejar datos en caso de éxito:
 
 function onResult(data) {
-addPlacesToMap(data.results);
-showTemplate(data.results);
+  addPlacesToMap(data.results);
+  showTemplate(data.results);
 }
 
 // Define a callback function to handle errors:
 function onError(data) {
-error = data;
+  error = data;
 }
 
 var ui = H.ui.UI.createDefault(map, defaultLayers);
@@ -127,13 +107,13 @@ moveMapToBerlin(map);
      // los lugares ubicados
 
 function addPlacesToMap(result) {
-group.addObjects(result.items.map(function (place) {
-var marker = new H.map.Marker({lat: place.position[0],
-lng: place.position[1]})
-return marker;
-
-}));
+  group.addObjects(result.items.map(function (place) {
+    var marker = new H.map.Marker({lat: place.position[0],
+    lng: place.position[1]})
+  return marker;
+  }));
 }
+
 
 console.log(latitud)
 console.log(longitud)
@@ -163,8 +143,9 @@ console.log(longitud)
                </div>
              </div>
            </div>`;
+;
 
-           templateCard.append(template);
+        templateCard.append(template);
 
        });
     }
