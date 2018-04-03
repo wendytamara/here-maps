@@ -24,6 +24,8 @@
       var lat = Number(position.coords.latitude.toFixed(4));
       var log = Number(position.coords.longitude.toFixed(4));
       x.value = lat + ' ' + log
+
+      moveMapToBerlin(map)
     })
     
 
@@ -33,8 +35,10 @@
 var campText = document.getElementById('camp-text');
 
 function moveMapToBerlin(map){
-  map.setCenter({lat:-12.0463731, lng:-77.042754});
+  map.setCenter({lat:latitud, lng:longitud});
   map.setZoom(14);
+
+
 }
 
 var platform = new H.service.Platform({
