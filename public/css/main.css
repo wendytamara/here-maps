@@ -12,15 +12,23 @@
 }
 
 .logo img {
-  width: 150px;
+  width: 60px;
+  margin-left: 30px;
+  margin-top: 5px
 }
 
 .header ul li {
   padding: 80px auto
 }
 
+.card1{
+  padding-left: 15px;
+  padding-right: 15px
+}
+
 .header {
   background-color: #024e4e;
+  z-index: 100000;
 }
 
 /* .container-li {
@@ -38,6 +46,7 @@
 
 .container-maps {
   padding: 0px !important;
+  margin-bottom: 0px !important
 
 }
 
@@ -52,4 +61,20 @@
 
 .input {
 margin-top: 50px;
+}
+
+.fixed {
+  position: fixed;
+}
+
+.busqueda {
+  padding-top: 60px !important
+}
+
+.stuck {
+  top: 10px;
+  left: 10px;
+  bottom: 10px;
+  width: 100%;
+  overflow-y: scroll;
 }

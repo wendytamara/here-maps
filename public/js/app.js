@@ -153,16 +153,12 @@ console.log(longitud)
 
       var placesItems = resultado.map(function (places, index) {
 
-           var template = ` <div class="row">
+           var template = ` <div class="row card1">
              <div class="col s12">
                <div class="card blue-grey darken-1">
                  <div class="card-content white-text">
                    <span class="card-title">${places.title}</span>
                    <p>${places.vicinity}</p>
-                 </div>
-                 <div class="card-action">
-                   <a href="#">This is a link</a>
-                   <a href="#">This is a link</a>
                  </div>
                </div>
              </div>

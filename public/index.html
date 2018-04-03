@@ -12,30 +12,30 @@
   <title>HereMaps</title>
 </head>
 <body>
-  <nav class='header'>
+  <nav class='header fixed'>
     <div class="">
-      <a href="#!" class="brand-logo color-gris logo"> <img  src="assets/images/tra.jpg" alt=""/> </a>
+      <a href="#!" class="brand-logo color-gris logo"> <img  src="assets/images/logo.png" alt=""/> </a>
       <a href="#" data-target="slide-out" class="sidenav-trigger color-letter hide-on-large-only" ><i class="material-icons icon-navbar bolt">menu</i></a>
       <ul class="right hide-on-med-and-down container-li">
-        <li><a class="color-letter bolt" href="sass.html">Inicio</a></li>
-        <li><a class="color-letter bolt"  href="sass.html">Mapa</a></li>
-        <li><a class="color-letter bolt"  href="sass.html">Iniciar Sesión</a></li>    
+        <li><a class="color-letter bolt" href="/">Inicio</a></li>
+        <li><a class="color-letter bolt"  href="">Mapa</a></li>
+        <!-- <li><a class="color-letter bolt"  href="sass.html">Iniciar Sesión</a></li>     -->
       </ul>
     </div>
   </nav>
   <ul id="slide-out" class="sidenav">
-    <li><a href="#!">First Sidebar Link</a></li>
-    <li><a href="#!">Second Sidebar Link</a></li>
+    <li><a href="#!">Inicio</a></li>
+    <li><a href="#!">Mapa</a></li>
   </ul>
   <!-- contenedor del mapa -->
   <section class="section-map">
-    <div class="row">
-      <div class="col s3 color-nav">  
+    <div class="row container-maps">
+      <div class="col s3 color-nav fixed busqueda stuck">  
         <div class="row"> <br><br>
           <div class="col s12">
             <ul class="tabs">
-              <li class="tab col s6"><a class="active" href="#test1">Rutas</a></li>
-              <li class="tab col s6"><a  href="#test2">Encuentra</a></li>
+              <li class="tab col s6"><a class="active" href="#test1">Encuentra</a></li>
+              <li class="tab col s6"><a  href="#test2">Rutas</a></li>
             </ul>
           </div>
           <div id="test1" class="col s12">
@@ -48,10 +48,13 @@
                     <label class="label-icon " for="search"><i class="material-icons black-text">search</i></label>
                     <i class="material-icons ">close</i>
                   </div>
-                  <button id="btnSearch"> Buscar</button>
+                  <div class="col s8 offset-s4">
+                    <button class=" btn" id="btnSearch">Buscar</button>
+                  </div>
                 </form>
               </div>
             </nav>
+            <div id="templateCard"></div>
           </div>
           <div id="test2" class="col s12">
             <br>
@@ -62,21 +65,23 @@
                     <i class="material-icons prefix">my_location</i>
                     <input type="text" id="demo" class="autocomplete" placeholder="Punto de Partida">
                   </div>
-                  <a class="waves-effect waves-light btn" id="btn">Localizame</a>
                   <div class="input-field col s12">
                     <i class="material-icons prefix">near_me</i>
                     <input type="text" id="autocomplete-input" class="autocomplete" placeholder="Destino">
+                  </div>
+                  <div class="col s10 offset-s2">
+                    <button class="waves-effect waves-light btn" id="btn">Localizame</button>
+                    <button class="waves-effect waves-light btn" id="">Trazar Ruta</button>
                   </div>
                 </div>
               </div>
             </div>
            
           </div>
-
-          <div id="templateCard"></div>
+         
         </div>
       </div>
-      <div class="col s9 container-maps">
+      <div class="col s9 container-maps offset-s3">
         <div class="" style="width: 100%; height: 100vh" id="map"></div> 
       </div>
     </div>
