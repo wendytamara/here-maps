@@ -11,18 +11,19 @@
       } else { 
           x.innerHTML = "Geolocation is not supported by this browser.";
       }
-  }
-
   
   function showPosition(position) {
 
-    latitud = position.coords.latitude;
-    longitud = position.coords.longitude;
- 
+    latitud = position.coords.latitude.toFixed(4);
+    longitud = position.coords.longitude.toFixed(4);
+
+    localStorage.lati = latitud;
+    localStorage.longi = longitud;
+
     btn.addEventListener('click', function(){
-      var lat = Number(position.coords.latitude.toFixed(4));
-      var log = Number(position.coords.longitude.toFixed(4));
-      x.value = lat + ' ' + log
+      x.value = latitud + ' ' + longitud
+
+      moveMapToBerlin(map)
     })
     
 
@@ -32,8 +33,9 @@
 var campText = document.getElementById('camp-text');
 
 function moveMapToBerlin(map){
-  map.setCenter({lat:-12.0565, lng:-76.9611});
+  map.setCenter({lat:latitud, lng:longitud});
   map.setZoom(14);
+
 }
 
 var platform = new H.service.Platform({
@@ -77,18 +79,27 @@ var input = '';
 function capturingValueInput(event) {
   event.preventDefault();
   input = campText.value;
-  console.log(input);
   var params = {
 // Búsqueda de texto simple para lugares con la palabra "hotel"
      // asociado a ellos:
   'q': input,
  // Buscar en el distrito de Chinatown en San Francisco:
-  'at': '-12.0463731,-77.042754'
+  'at': latitud +','+ longitud
   };
 
+   localStorage.lati = latitud;
+   localStorage.longi = longitud;
+  
+  //  "-12.0565,-76.9611"
+  
+  
+  console.log(params);
     search.request(params, {}, onResult, onError);
 }
 
+
+console.log(localStorage.lati)
+console.log(localStorage.longi)
 
 // capturingValueInput();
 
@@ -100,7 +111,6 @@ function capturingValueInput(event) {
 function onResult(data) {
 addPlacesToMap(data.results);
 showTemplate(data.results);
-console.log(data.results);
 }
 
 // Define a callback function to handle errors:
@@ -117,9 +127,6 @@ moveMapToBerlin(map);
      // los lugares ubicados
 
 function addPlacesToMap(result) {
-  // console.log(result)
-  // console.log(result.items)
-
 group.addObjects(result.items.map(function (place) {
 var marker = new H.map.Marker({lat: place.position[0],
 lng: place.position[1]})
@@ -128,7 +135,8 @@ return marker;
 }));
 }
 
-
+console.log(latitud)
+console.log(longitud)
 
 // Run a search request with parameters, headers (empty), and
 // callback functions:
@@ -140,14 +148,11 @@ return marker;
 
     function showTemplate(result){
        templateCard.empty();
-      console.log(result);
       var resultado = result.items;
 
 
       var placesItems = resultado.map(function (places, index) {
 
-
-           console.log(places.title)
            var template = ` <div class="row">
              <div class="col s12">
                <div class="card blue-grey darken-1">
@@ -166,14 +171,9 @@ return marker;
            templateCard.append(template);
 
        });
-
-
-
     }
-
-
   }
-
+}
   
 
 
