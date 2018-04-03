@@ -114,7 +114,7 @@ function calculateRouteFromAtoB (platform) {
     }
   }
   
-  
+
   /**
    * Creates a H.map.Polyline from the shape of the route and adds it to the map.
    * @param {Object} route A route as received from the H.service.RoutingService

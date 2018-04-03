@@ -14,7 +14,6 @@
   }
 
   
-  
   function showPosition(position) {
 
     latitud = position.coords.latitude;
@@ -33,7 +32,7 @@
 var campText = document.getElementById('camp-text');
 
 function moveMapToBerlin(map){
-  map.setCenter({lat:-12.0463731, lng:-77.042754});
+  map.setCenter({lat:-12.0565, lng:-76.9611});
   map.setZoom(14);
 }
 
@@ -171,10 +170,6 @@ return marker;
 
 
     }
-
-
-
-
 
 
   }
