@@ -34,8 +34,8 @@ function moveMapToBerlin(map){
 }
 
 var platform = new H.service.Platform({
-  app_id: 'dtSI2axPe5QEr4QN4Bmd',
-  app_code: 'cciCXXxEAcSyxCtSkOFyZg',
+  app_id: '0TnpOGZu8XVmEQ83QfMM',
+  app_code: 'oKNXUtGgUsYLWrIjUrWi9w',
   useCIT: true,
   useHTTPS: true
 });
